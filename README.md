@@ -8,9 +8,9 @@ This repository is used by the Lightning AI Developer Relations team & our commu
 
 ### October 2022
 
-| Title                                                                                                                                                                                                                                              | Type            |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------- |
-| <a href="https://github.com/Lightning-AI-Dev/Content/blob/main/Build%20Tailored%20ML%20Applications%20with%20Lightning%20AI.pdf" target="_blank" ><strong>Build Tailored ML Applications with Ligthning AI</strong></a> (October 25, 2022) <em>Lightning AI</em>                          | Workshop|
+| Title                                                                                                                                                                                                                                              | Type            | Replay            |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------- | :-------------- |
+| <a href="https://github.com/Lightning-AI-Dev/Content/blob/main/Build%20Tailored%20ML%20Applications%20with%20Lightning%20AI.pdf" target="_blank" ><strong>Build Tailored ML Applications with Ligthning AI</strong></a> (October 25, 2022) <em>Lightning AI</em>                          | Workshop| [Link](https://youtu.be/BcCjJZCud5w) | 
 
 ### Content Types
 
