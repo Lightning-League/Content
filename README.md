@@ -6,6 +6,12 @@ This repository is used by the Lightning AI Developer Relations team & our commu
 
 - To create a new request, [open a new issue](https://github.com/Lightning-AI-Dev/Content/issues/new)
 
+### October 2022
+
+| Title                                                                                                                                                                                                                                              | Type            |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------- |
+| <a href="NA" target="_blank" ><strong>Build Tailored ML Applications with Ligthning AI</strong></a> (October 25, 2022) <em>Lightning AI</em>                          | Workshop|
+
 ### Content Types
 
 | Type  | Description  | Destination(s)  |
