@@ -10,8 +10,8 @@ This repository is used by the Lightning AI Developer Relations team & our commu
 
 | Title                                                                                                                                                                                                                                              | Type            | Replay            |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------- | :-------------- |
-| <a href="https://github.com/Lightning-AI-Dev/Content/blob/main/Livestream:%20How%20to%20Deploy%20Diffusion%20Models.pdf" target="_blank" ><strong>How to Deploy Diffusion Models</strong></a> (October 27, 2022) <em>Lightning AI</em>                          | Livestream| [Link](https://youtu.be/JV4Yb-IIEcI) | 
-| <a href="https://github.com/Lightning-AI-Dev/Content/blob/main/Build%20Tailored%20ML%20Applications%20with%20Lightning%20AI.pdf" target="_blank" ><strong>Build Tailored ML Applications with Ligthning AI</strong></a> (October 25, 2022) <em>Lightning AI</em>                          | Workshop| [Link](https://youtu.be/BcCjJZCud5w) | 
+| <a href="https://github.com/Lightning-AI-Dev/Content/blob/main/2022/Livestream:%20How%20to%20Deploy%20Diffusion%20Models.pdf" target="_blank" ><strong>How to Deploy Diffusion Models</strong></a> (October 27, 2022) <em>Lightning AI</em>                          | Livestream| [Link](https://youtu.be/JV4Yb-IIEcI) | 
+| <a href="https://github.com/Lightning-AI-Dev/Content/blob/main/2022/Build%20Tailored%20ML%20Applications%20with%20Lightning%20AI.pdf" target="_blank" ><strong>Build Tailored ML Applications with Ligthning AI</strong></a> (October 25, 2022) <em>Lightning AI</em>                          | Workshop| [Link](https://youtu.be/BcCjJZCud5w) | 
 
 ### Content Types
 
