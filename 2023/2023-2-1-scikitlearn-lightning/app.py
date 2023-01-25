@@ -4,8 +4,11 @@ from lightning.app.storage import Drive
 
 
 from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
 from sklearn import tree
-from joblib import dump, load
+from joblib import dump
+
+RANDOM_STATE = 1234
 
 class SKLearnTraining(L.LightningWork):
     def __init__(self):
@@ -23,12 +26,12 @@ class SKLearnTraining(L.LightningWork):
         X, y = iris.data, iris.target
         
         # Split the dataset into training and test set
-        X_train, X_test, y_train, y_test = train_test_split(X, y)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=RANDOM_STATE)
 
         
         # Step 2
         # Intialize the model
-        clf = tree.DecisionTreeClassifier()
+        clf = tree.DecisionTreeClassifier(random_state=RANDOM_STATE)
 
         
         # Step 3
@@ -46,7 +49,7 @@ class SKLearnTraining(L.LightningWork):
         dump(clf, 'model.joblib')
         
         self.model_storage.put("model.joblib")
-        print("model trained and saved successfully")component = SKLearnTraining()
+        print("model trained and saved successfully")
         
-        
+component = SKLearnTraining()
 app = L.LightningApp(component)
