@@ -4,7 +4,7 @@ from lightning.app.components.serve import PythonServer
 from lightning.app.storage import Drive
 from pydantic import BaseModel
 
-FEATURE_NAMES = ["Setosa", "Versicolor", "Virginica"]
+CLASS_NAMES = ["Setosa", "Versicolor", "Virginica"]
 
 
 class FeaturesInput(BaseModel):
@@ -34,7 +34,7 @@ class ModelServe(PythonServer):
             [[sepal_width, sepal_length, petal_width, petal_length]]
         )[0]
         print(class_idx)
-        return {"prediction": FEATURE_NAMES[class_idx]}
+        return {"prediction": CLASS_NAMES[class_idx]}
 
 
 # 1. Launch REST API

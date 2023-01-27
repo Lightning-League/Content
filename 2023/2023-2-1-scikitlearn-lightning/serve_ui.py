@@ -6,7 +6,7 @@ from lightning.app.components.serve import ServeGradio
 from lightning.app.storage import Drive
 from PIL import Image
 
-FEATURE_NAMES = ["Setosa", "Versicolor", "Virginica"]
+CLASS_NAMES = ["Setosa", "Versicolor", "Virginica"]
 FLOWERS = ["setosa.jpeg", "versicolor.jpeg", "virginica.jpeg"]
 
 
@@ -33,7 +33,7 @@ class SKLearnServeUI(ServeGradio):
             [[sepal_width, sepal_length, petal_width, petal_length]]
         )[0]
         print(class_idx)
-        return FEATURE_NAMES[class_idx], Image.open("flowers/" + FLOWERS[class_idx])
+        return CLASS_NAMES[class_idx], Image.open("flowers/" + FLOWERS[class_idx])
 
 
 component = SKLearnServeUI()
