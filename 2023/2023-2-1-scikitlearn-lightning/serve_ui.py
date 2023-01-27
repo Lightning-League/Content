@@ -35,5 +35,6 @@ class SKLearnServeUI(ServeGradio):
         print(class_idx)
         return FEATURE_NAMES[class_idx], Image.open("flowers/" + FLOWERS[class_idx])
 
+
 component = SKLearnServeUI()
 app = L.LightningApp(component)

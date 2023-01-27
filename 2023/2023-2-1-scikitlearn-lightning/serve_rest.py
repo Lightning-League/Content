@@ -7,6 +7,7 @@ from pydantic import BaseModel
 
 FEATURE_NAMES = ["Setosa", "Versicolor", "Virginica"]
 
+
 class FeaturesInput(BaseModel):
     sepal_width: float
     sepal_length: float
@@ -37,5 +38,13 @@ class ModelServe(PythonServer):
         return {"prediction": FEATURE_NAMES[class_idx]}
 
 
+# 1. Launch REST API
 component = ModelServe()
 app = L.LightningApp(component)
+
+
+# 2. AutoScale the API
+# from lightning.app.components import AutoScaler
+
+# scalable_component = AutoScaler(ModelServe, max_replicas=2, input_type=FeaturesInput)
+# app = L.LightningApp(scalable_component)
