@@ -6,8 +6,7 @@ from lightning.app.components.serve import ServeGradio, PythonServer
 
 from joblib import load
 
-FEATURE_NAMES = ['setosa' 'versicolor' 'virginica']
-
+FEATURE_NAMES = ['Setosa', 'Versicolor', 'Virginica']
 
 class SKLearnServe(ServeGradio):
     inputs = [gr.Number(), gr.Number(), gr.Number(), gr.Number()]
@@ -25,8 +24,6 @@ class SKLearnServe(ServeGradio):
     def predict(self, sepal_width, sepal_length, petal_width, petal_length):
         class_idx =  self.model.predict([[sepal_width, sepal_length, petal_width, petal_length]])[0]
         print(class_idx)
-        print(FEATURE_NAMES)
-        print(FEATURE_NAMES[class_idx])
         return FEATURE_NAMES[class_idx]
 
 component = SKLearnServe()
