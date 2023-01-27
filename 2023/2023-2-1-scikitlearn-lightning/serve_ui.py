@@ -2,7 +2,7 @@
 import gradio as gr
 import lightning as L
 from joblib import load
-from lightning.app.components.serve import PythonServer, ServeGradio
+from lightning.app.components.serve import ServeGradio
 from lightning.app.storage import Drive
 from PIL import Image
 
@@ -10,7 +10,7 @@ FEATURE_NAMES = ["Setosa", "Versicolor", "Virginica"]
 FLOWERS = ["setosa.jpeg", "versicolor.jpeg", "virginica.jpeg"]
 
 
-class SKLearnServe(ServeGradio):
+class SKLearnServeUI(ServeGradio):
     inputs = [
         gr.Number(label="Sepal Width"),
         gr.Number(label="Sepal Length"),
@@ -35,6 +35,5 @@ class SKLearnServe(ServeGradio):
         print(class_idx)
         return FEATURE_NAMES[class_idx], Image.open("flowers/" + FLOWERS[class_idx])
 
-
-component = SKLearnServe()
+component = SKLearnServeUI()
 app = L.LightningApp(component)
