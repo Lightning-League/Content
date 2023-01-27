@@ -4,8 +4,10 @@ import lightning as L
 from joblib import load
 from lightning.app.components.serve import PythonServer, ServeGradio
 from lightning.app.storage import Drive
+from PIL import Image
 
 FEATURE_NAMES = ["Setosa", "Versicolor", "Virginica"]
+FLOWERS = ["setosa.jpeg", "versicolor.jpeg", "virginica.jpeg"]
 
 
 class SKLearnServe(ServeGradio):
@@ -15,7 +17,7 @@ class SKLearnServe(ServeGradio):
         gr.Number(label="Petal Width"),
         gr.Number(label="Petal Length"),
     ]
-    outputs = gr.Text()
+    outputs = [gr.Text(), gr.Image(label="Predicted Iris")]
 
     def __init__(self):
         super().__init__(self)
@@ -31,7 +33,7 @@ class SKLearnServe(ServeGradio):
             [[sepal_width, sepal_length, petal_width, petal_length]]
         )[0]
         print(class_idx)
-        return FEATURE_NAMES[class_idx]
+        return FEATURE_NAMES[class_idx], Image.open("flowers/" + FLOWERS[class_idx])
 
 
 component = SKLearnServe()
