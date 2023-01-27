@@ -1,4 +1,3 @@
-# !python -m pip install -U scikit-learn fastapi
 import lightning as L
 from joblib import load
 from lightning.app.components.serve import PythonServer
