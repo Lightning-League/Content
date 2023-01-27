@@ -1,15 +1,20 @@
 # !python -m pip install -U scikit-learn
 import gradio as gr
 import lightning as L
-from lightning.app.storage import Drive
-from lightning.app.components.serve import ServeGradio, PythonServer
-
 from joblib import load
+from lightning.app.components.serve import PythonServer, ServeGradio
+from lightning.app.storage import Drive
 
-FEATURE_NAMES = ['Setosa', 'Versicolor', 'Virginica']
+FEATURE_NAMES = ["Setosa", "Versicolor", "Virginica"]
+
 
 class SKLearnServe(ServeGradio):
-    inputs = [gr.Number(), gr.Number(), gr.Number(), gr.Number()]
+    inputs = [
+        gr.Number(label="Sepal Width"),
+        gr.Number(label="Sepal Length"),
+        gr.Number(label="Petal Width"),
+        gr.Number(label="Petal Length"),
+    ]
     outputs = gr.Text()
 
     def __init__(self):
@@ -22,9 +27,12 @@ class SKLearnServe(ServeGradio):
         return load("model.joblib")
 
     def predict(self, sepal_width, sepal_length, petal_width, petal_length):
-        class_idx =  self.model.predict([[sepal_width, sepal_length, petal_width, petal_length]])[0]
+        class_idx = self.model.predict(
+            [[sepal_width, sepal_length, petal_width, petal_length]]
+        )[0]
         print(class_idx)
         return FEATURE_NAMES[class_idx]
+
 
 component = SKLearnServe()
 app = L.LightningApp(component)
