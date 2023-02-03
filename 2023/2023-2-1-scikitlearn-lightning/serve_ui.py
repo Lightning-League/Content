@@ -18,6 +18,7 @@ class SKLearnServeUI(ServeGradio):
         gr.Number(label="Petal Length"),
     ]
     outputs = [gr.Text(), gr.Image(label="Predicted Iris")]
+    examples = [[6.1, 3. , 4.6, 1.4], [4.6, 3.4, 1.4, 0.3], [6.3, 2.9, 5.6, 1.8]]
 
     def __init__(self):
         super().__init__(self)
