@@ -80,8 +80,12 @@ def main():
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
     fabric = L.Fabric()
+    
+    setup_t0 = time.perf_counter()
     net, optimizer = fabric.setup(net, optimizer)
     trainloader = fabric.setup_dataloaders(trainloader)
+    setup_t1 = time.perf_counter()
+    print(f"setup time: {setup_t1-setup_t0} sec")
 
     t0 = time.perf_counter()
     for epoch in range(2):  # loop over the dataset multiple times
