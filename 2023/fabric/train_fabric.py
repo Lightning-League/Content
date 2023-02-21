@@ -1,56 +1,28 @@
 # https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
+import time
+
+import lightning as L
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
-import time
-import lightning as L
+
 
 def main():
     transform = transforms.Compose(
-        [transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+    )
 
     batch_size = 4
 
-    trainset = torchvision.datasets.CIFAR10(root='~/data', train=True,
-                                            download=True, transform=transform)
-    trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size,
-                                            shuffle=True, num_workers=2)
-
-    testset = torchvision.datasets.CIFAR10(root='~/data', train=False,
-                                        download=True, transform=transform)
-    testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size,
-                                            shuffle=False, num_workers=2)
-
-    classes = ('plane', 'car', 'bird', 'cat',
-            'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
-
-    import matplotlib.pyplot as plt
-    import numpy as np
-
-    # functions to show an image
-
-
-    def imshow(img):
-        img = img / 2 + 0.5     # unnormalize
-        npimg = img.numpy()
-        plt.imshow(np.transpose(npimg, (1, 2, 0)))
-        plt.show()
-
-
-    # get some random training images
-    dataiter = iter(trainloader)
-    images, labels = next(dataiter)
-
-    # show images
-    # imshow(torchvision.utils.make_grid(images))
-    # print labels
-    print(' '.join(f'{classes[labels[j]]:5s}' for j in range(batch_size)))
-
-
-    import torch.nn as nn
-    import torch.nn.functional as F
-
+    trainset = torchvision.datasets.CIFAR10(
+        root="~/data", train=True, download=True, transform=transform
+    )
+    trainloader = torch.utils.data.DataLoader(
+        trainset, batch_size=batch_size, shuffle=True, num_workers=2
+    )
 
     class Net(nn.Module):
         def __init__(self):
@@ -65,22 +37,19 @@ def main():
         def forward(self, x):
             x = self.pool(F.relu(self.conv1(x)))
             x = self.pool(F.relu(self.conv2(x)))
-            x = torch.flatten(x, 1) # flatten all dimensions except batch
+            x = torch.flatten(x, 1)  # flatten all dimensions except batch
             x = F.relu(self.fc1(x))
             x = F.relu(self.fc2(x))
             x = self.fc3(x)
             return x
 
-
     net = Net()
-
-    import torch.optim as optim
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
     fabric = L.Fabric()
-    
+
     setup_t0 = time.perf_counter()
     net, optimizer = fabric.setup(net, optimizer)
     trainloader = fabric.setup_dataloaders(trainloader)
@@ -106,7 +75,8 @@ def main():
 
     t1 = time.perf_counter()
     print(running_loss)
-    print('Finished Training in', t1-t0, "secs")
+    print("Finished Training in", t1 - t0, "secs")
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
