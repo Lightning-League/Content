@@ -52,8 +52,7 @@ def main():
 
     t0 = time.perf_counter()
     for epoch in range(2):  # loop over the dataset multiple times
-
-        running_loss = 0.0
+        print(f"epoch: {epoch}")
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data
@@ -69,7 +68,6 @@ def main():
             optimizer.step()
 
     t1 = time.perf_counter()
-    print(running_loss)
     print("Finished Training in", t1 - t0, "secs")
 
 
