@@ -7,7 +7,7 @@ from lightning.app.components.serve import PythonServer
 from pydantic import BaseModel
 
 class InputType(BaseModel):
-    url: str
+    image_url: str
 
 class Detections(BaseModel):
     prediction: list
@@ -18,8 +18,10 @@ class YoloV8Server(PythonServer):
         self._model = YOLO("yolov8n.pt")
 
     def predict(self, request: InputType):
-        preds = self._model.predict(request.url)[0].tolist()
-        return {"prediction": preds}
+        preds = self._model.predict(request.image_url)[0]
+        classes = preds.boxes.cls
+        results = [self._model.names[int(cls)] for cls in classes]
+        return {"prediction": results}
 
 component = YoloV8Server(input_type=InputType, output_type=Detections)
 app = L.LightningApp(component)
