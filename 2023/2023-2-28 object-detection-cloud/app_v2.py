@@ -4,13 +4,14 @@
 
 import lightning as L
 from lightning.app.components.serve import PythonServer
+from lightning.app.components import AutoScaler
 from pydantic import BaseModel
 
 class InputType(BaseModel):
     image_url: str
 
 class Detections(BaseModel):
-    prediction: dict
+    prediction: list
 
 class YoloV8Server(PythonServer):
     def setup(self):
@@ -19,7 +20,6 @@ class YoloV8Server(PythonServer):
 
     def predict(self, request: InputType):
         preds = self._model.predict(request.image_url)
-        breakpoint()
         print(preds)
         classes = preds[0].boxes.cls
         results = [self._model.names[int(cls)] for cls in classes]
@@ -35,7 +35,6 @@ class RootFlow(L.LightningFlow):
         self.component.run()
         if self.component.url:
             print(self.component.url)
-
 
 
 app = L.LightningApp(RootFlow())
